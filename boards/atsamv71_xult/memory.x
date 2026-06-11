@@ -1,10 +1,19 @@
+
 MEMORY
 {
-  FLASH : ORIGIN = 0x400000, LENGTH = 2M
-  /* Total RAM is 256K or 384K; p. 54 */
-  CAN : ORIGIN = 0x20400000, LENGTH = 64K
-  RAM : ORIGIN = 0x20410000, LENGTH = 192K
+  /* Virtual FLASH region using the first 256KB of internal SRAM */
+  /* FLASH : ORIGIN = 0x400000, LENGTH = 2M */
+  FLASH : ORIGIN = 0x20400000, LENGTH = 256K
+
+  /* Virtual RAM region using the remaining 128KB of internal SRAM */
+  RAM   : ORIGIN = 0x20440000, LENGTH = 128K
 }
+/* REGION_ALIAS("FLASH", ITCM); */
+/* REGION_ALIAS("RAM", DTCM); */
+
+/* Force the vector table to be at the exact beginning of your new FLASH region */
+EXTERN(RESET_VECTOR);
+ENTRY(RESET_VECTOR);
 
 SECTIONS {
   .can (NOLOAD) :
