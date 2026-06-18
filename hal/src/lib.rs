@@ -129,3 +129,5 @@ pub mod tc;
 pub mod usb;
 #[cfg(feature = "__device-selected")]
 pub mod watchdog;
+#[cfg(feature = "__device-selected")]
+pub mod xdmac;
