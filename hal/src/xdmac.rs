@@ -116,6 +116,8 @@ impl Xdmac {
         Ok(Transfer::new(channel))
     }
 
+// FIXME - this needs to be refactored out..
+/*
     /// Starts an SPI memory-to-peripheral transmit transfer.
     #[cfg(not(feature = "__pins-64"))]
     pub fn spi_tx<'a, M: SpiMeta + SpiDma>(
@@ -319,6 +321,7 @@ impl Xdmac {
 
         Ok(Transfer::new(channel))
     }
+*/
 
     fn configure(&mut self, channel: &Channel, src: u32, dst: u32, len: usize, cc: u32) {
         self.disable(channel.index);
